@@ -1,38 +1,58 @@
 # Language
-_What is the name of the language? Link the name to its webpage 
-(if appropriate)._
+The [Kivy Language (kv lang)](http://kivy.org/docs/api-kivy.lang.html).
 
 
 # Domain
-_Describe the language's domain in five words._
+User interface/interactions in Kivy applications.
 
 
 # Computational model
-_What is the underlying computational model of this language? To answer this 
-question, provide a high-level description (no more than 100 words) of the 
-computation that occurs when someone executes a program in this language._
+This language can't be executed alone - it requires (at the very least) a small
+wrapper of Python code.  When executed it is used to describe an application's
+appearance and interactability.  This is similar to HTML/CSS in web 
+development, or QML for Qt, or FXML for JavaFX.  Thus the file is parsed, then
+used to render the application.
 
 
 # DSL-ness
-_Fowler writes about a spectrum of languages, from general-purpose languages to 
-"purely" domain-specific. Where does the DSL you chose fall on this spectrum, 
-and why?_ 
-
+This is not a purely domain-specific language.  It is essentially a modified 
+version of the Python language spec - in fact a large number of its statements
+are valid Python statements.  Thus it can do an awful lot beyond just laying
+out the application.  That being said, it would/should rarely be used as
+anything more than a DSL.  It is not a particularly friendly format to just
+write code in, and is designed to work within the constraints of a Kivy
+application.
 
 # Internal or external?
-_Is the language implemented as an internal or external DSL? 
-Justify your answer._
+External.  While it is heavily based on the Python language spec and can
+contain valid Python code, it is not in and of itself a valid Python program,
+and requires its own parser to be used.
+
+_Question: I'm not sure how to actually classify this DSL.  It seems like a bit
+of a blend, considering that substantial portions of it are or can be valid
+Python code._
 
 
 # Host language
-_What language(s) was (were) used to implement the DSL?_
+Kivy is designed to be used from Python, potentially with C/C++ extensions.
+The implementation of the Kivy framework is done predominantly using Cython, a
+Python/C hybrid.  The Kivy Language itself is heavily based on the Python
+language, and is parsed, executed by a Cython parser/interpreter.
 
 
 # Benefits
-_Identify one potential benefit of the DSL: how is a programmer's life or a 
-company's bottom line made easier by the existence of this language?_
+This makes it very easy to separate the concerns of an application - the
+display of the application can be very easily and cleanly separated from the
+business logic.  This makes it easy to change one and not the other.
+
+It also can make it easier for a non-programmer to have some idea of how the
+application is/should appear, letting a designer or product manager to have a
+better idea of what is going on without having to understand the code or
+actually run the code.
 
 
 # Drawbacks
-_Identify one potential drawback of the DSL: what does a programmer or company 
-lose by using this DSL instead of a general-purpose language?_
+One drawback is that it separates the concerns of the application.  It can
+become difficult to manage breaking changes to either the .py file or the .kv
+file.  If something is renamed or removed from one file, but not the other,
+this can cause problems.  

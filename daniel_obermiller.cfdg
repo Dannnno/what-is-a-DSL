@@ -1,0 +1,107 @@
+startshape KNIGHT
+
+rule KNIGHT {	
+	BODY { x 550 sat 0.7 b 0.6 }
+}
+
+rule BODY {
+	HEAD { y 500 }
+	TORSO { s 400 600 hue 200 }
+	// Can't get these to not overlap the shield
+	//LEGS { y -550 }
+	ARMS { }
+}
+
+rule HEAD {
+	HELMET { s 200 hue 40 }
+	NECK_FACE { s 100 300 y -100 }
+	EYE { x -20 }
+	EYE { x 20 }
+}
+
+rule HELMET {
+	SQUARE { hue 10 }
+}
+
+rule NECK_FACE {
+	SQUARE { }
+}
+
+rule EYE {
+	SQUARE { s 20 hue 233 }
+}
+
+rule TORSO {
+	SQUARE { }
+	NAME { s .01 x -.3 y .1 hue 120 sat 0 b 1 a 1 }	
+}
+
+rule LEGS {
+	SQUARE { s 180 500 hue 400 x -110 }
+	SQUARE { s 180 500 hue 400 x 110 }
+}
+
+rule ARMS {
+	LEFT_ARM { x 200 y 200 s 100 }
+	RIGHT_ARM { x -200 y 200 s 100 }	
+}
+
+rule LEFT_ARM {
+	100* { x .01 y -.03 } 
+		SQUARE { hue 100 }
+	SWORD { x 1 y -3 hue 0 sat 0.7 b 0.6 }
+}
+
+rule RIGHT_ARM {
+	100* { x -.01 y-.03 } 
+		SQUARE { hue 100 }
+	SHIELD { s 7 x -1 y -3 }
+}
+
+rule SHIELD {
+	SHIELD_ { hue 0 sat 0.7 b 0.6 }
+}
+
+rule SHIELD_ {
+	CIRCLE { }
+	SHIELD_ { s .99 hue 10 }
+}
+
+rule NAME {
+	D { x 30 }
+	A { x 42 }
+	N { x 54 }
+}
+
+rule D {
+	LINE { y 24 r 180 }
+	LINE { r 320 s 0.65 }
+	LINE { y 24 r 220 s 0.65 }
+}
+
+rule A {
+	LINE { r 350 }
+	LINE { r 190 x 4 y 23 }
+	LINE { y 12 x 2 r 270 s 0.2 }
+}
+
+rule N {
+	LINE { y 24 r 180 }
+	LINE { y 24 r 206 s 1.1 }
+	LINE { x 12 }
+}
+
+rule SWORD {
+	STAR {}
+	SWORD { s.99 hue -10 x .05 y .03 }
+}
+
+path STAR {
+	MOVETO { x cos(90-144) y sin(90-144) }
+    4* { r 144 } LINETO { y 1 }
+    CLOSEPOLY{}
+}
+
+rule LINE {
+	TRIANGLE [ s 1 30 y 0.26 ]
+}

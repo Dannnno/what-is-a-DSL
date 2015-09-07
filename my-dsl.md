@@ -36,7 +36,7 @@ Python code._
 # Host language
 Kivy is designed to be used from Python, potentially with C/C++ extensions.
 The implementation of the Kivy framework is done predominantly using Cython, a
-Python/C hybrid.  The Kivy Language itself is heavily based on the Python
+Python/C hybrid (also a DSL!).  The Kivy Language itself is heavily based on the Python
 language, and is parsed, executed by a Cython parser/interpreter.
 
 
